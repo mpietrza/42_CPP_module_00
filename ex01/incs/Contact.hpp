@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:04:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/10 12:10:32 by milosz           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:06:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,24 @@
 
 class Contact
 {
-    private:
-        static std::string  _fields_name[5]
-        std::string         _informations[11];
+	private:
+		static std::string	_FieldsName[5];
+		std::string			_Information[11];
 
-        enum Field {
-            FirstName,
-            LastName,
-            
-        }
-}
+		enum Field
+		{
+			FirstName,
+			LastName,
+			Nickname,
+			PhoneNumber,
+			DarkestSecret,
+		};
+	public:
+		Contact(void);
+		~Contact(void);
+
+		bool	SetContact();
+		void	GetContact(int index) const;
+};
 
 #endif
