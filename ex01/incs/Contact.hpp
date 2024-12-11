@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:04:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/10 16:06:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:31:04 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 class Contact
 {
 	private:
-		static std::string	_FieldsName[5];
-		std::string			_Information[11];
+		static std::string	_NameOfField[5];
+		std::string			_data[11];
 
 		enum Field
 		{

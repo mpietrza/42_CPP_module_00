@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:07:05 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/10 16:12:32 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:04:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 class PhoneBook
 {
 	private:
-		Contact	_Contacts[8];
-		int		_Index;
-		bool	_Full;
+		Contact	_contacts[8];
+		int		_index;
+		bool	_is_full;
 
 	public:
-		PhoneBook(void)
+		PhoneBook(void);
 		~PhoneBook(void);
 
-		void	SetInformation(void);
-		void	GetInformation(void) const;
-		void	show_instruction(void);
+		void	SetData(void);
+		void	GetData(void) const;
+		void	ShowInstruction(void);
 };
 
 #endif
