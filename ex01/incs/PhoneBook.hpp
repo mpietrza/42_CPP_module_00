@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:07:05 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/11 17:04:21 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:42:14 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <iomanip>
 # include <cstdlib>
 # include "Contact.hpp"
+# include <limits>
 
 class PhoneBook
 {
@@ -32,6 +33,7 @@ class PhoneBook
 		void	SetData(void);
 		void	GetData(void) const;
 		void	ShowInstruction(void);
+		void	PrintInstruction(void) const;
 };
 
 #endif

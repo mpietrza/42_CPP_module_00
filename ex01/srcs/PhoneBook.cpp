@@ -6,11 +6,11 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:17:18 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/11 17:36:47 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:50:44 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "../incs/PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
@@ -24,9 +24,9 @@ PhoneBook::~PhoneBook(void)
 	return;
 }
 
-void	PhoneBook::SetData(void)
+void PhoneBook::SetData(void)
 {
-	char	input;
+	std::string input;
 
 	if (this->_is_full == false)
 	{
@@ -41,37 +41,39 @@ void	PhoneBook::SetData(void)
 	}
 	else
 	{
-		std::cout << "The phonebook is full!" << std::endl;
+		std::cout << "\033[31mThe phonebook is full!" << std::endl;
 		std::cout << "For deletion of the 1st existing contact";
 		std::cout << " and adding the new one as the last press 'y'." << std::endl;
-		std::cout << "For going back to the main menu press 'n'." << std::endl;
-		std::cin >> input;
+		std::cout << "For going back to the main menu press 'n'.\033[0m" << std::endl;
+		std::getline(std::cin, input);
 		if (std::cin.eof() == true)
 		{
-			std::cout << "\033[31mCtrl - D pressed - exiting the phone book.\033[0m" << std::endl;
+			std::cout << "\nCtrl - D pressed - exiting the phone book." << std::endl;
 			std::exit(0);
 		}
-		else if (input == 'y')
+		else if (input.compare("y") == 0)
 		{
 			for (int i = 1; i < 8; i++)
 				this->_contacts[i - 1] = this->_contacts[i];
 			std::cout << "Contact number " << this->_index + 1 << std::endl;
 			this->_contacts[this->_index].SetContact();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters in the input buffer
 		}
-		else if (input == 'n')
+		else if (input.compare("n") == 0)
 			std::cout << "Going back to the main menu" << std::endl;
+		else
+			std::cout << "\033[31mError: unknown command!\033[0m" << std::endl;
+		input.clear();
 	}
 }
 
 void	PhoneBook::GetData() const
 {
-//	int	index;
-	
 	if (this->_index == 0)
 		std::cout << "\033[31mThe phone book is empty\033[0m" << std::endl;
 	else
 	{
-		char	input;
+		char	input[2];
 		while (42)
 		{
 			std::cout << "Press a button from '1' to '8' to show the contact assigned to that number";
@@ -79,34 +81,35 @@ void	PhoneBook::GetData() const
 			std::cin >> input;
 			if (std::cin.eof() == true)
 			{
-				std::cout << "\033[31Ctrl - D pressed - exiting the phone book!\033[0m" << std::endl;
+				std::cout << "\033[1;34mCtrl - D pressed - exiting the phone book.\033[0m" << std::endl;
 				std::exit(0);
 			}
-			else if (input == 'n')
+			else if (input[0] == 'n')
 			{
-				std::cout << "Going back to the main menu" << std::endl;
+				std::cout << "\033[1;33mGoing back to the main menu\033[0m" << std::endl;
 				break;
 			}
-			else if ((input < '0' || input > '8') && input != 'n')
-			{
-				std::cout << "Error: out of range!" << std::endl;
-				std::cout << "Press a button from '1' to '8' to show the contact assigned to that number";
-				std::cout << " or 'n' to go back to the main menu" << std::endl;
-			}
+			else if (((input[0] < '1' || input[0] > '8') && input[0] != 'n') || input[1] != '\0')
+				std::cout << "\033[31mError: out of range!\033[0m" << std::endl;			
+			else if (this->_contacts[input[0] - 48 - 1].IsEmpty())
+				std::cout << "\033[31mError: contact is empty!\033[0m" << std::endl;
 			else
 			{
 				std::cout << "|-------------------------------------------|" << std::endl;
 				std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 				std::cout << "|----------|----------|----------|----------|" << std::endl;
-				this->_contacts[input - 48 - 1].GetContact(input - 48);
+				this->_contacts[input[0] - 48 - 1].GetContact(input[0] - 48);
 				std::cout << "|----------|----------|----------|----------|" << std::endl;
 			}
 		}
-		if (index != 'n')
-		{
-			std::cout << "Error: fatal!!!" << std::endl;
-			exit(1);
-		}
-		else
-			return;
+
+	}
+}
+
+void	PhoneBook::PrintInstruction() const
+{
+	std::cout << "\033[1;36m|---------Awesome phone book----------|\033[0m" << std::endl;
+	std::cout << "To add a new contact type \033[1;37;1m'ADD'\033[0m." << std::endl;
+	std::cout << "To search for a contact type \033[1;37;1m'SEARCH'\033[0m." << std::endl;
+	std::cout << "To exit the phone book type \033[1;37;1m'EXIT'\033[0m." << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:01:50 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/11 16:50:36 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:05:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Contact::Contact()
 {
 	for (int i = FirstName; i <= DarkestSecret; i++)
 		this->_data[i] = std::string();
-		return;
+	return;
 }
 
 /**
@@ -62,7 +62,7 @@ bool	Contact::SetContact()
 		{
 			if (std::cin.eof() == true)
 			{
-				std::cout << "Ctrl - D pressed - exiting the phone book." << std::endl;
+				std::cout << "\033[1;34mCtrl - D pressed - exiting the phone book.\033[0m" << std::endl;
 				std::exit(0);
 			}
 			else if (this->_data[i].length() == 0)
@@ -71,11 +71,17 @@ bool	Contact::SetContact()
 				std::cout << "\033[31mAll fields mustn't be blank\033[0m" << std::endl;
 				std::cout << "Please provide the "<< Contact::_NameOfField[i] << ": ";
 			}
+			else
+			{
+				std::cout << "\033[31mError: fatal!!!\033[0m" << std::endl;
+				std::exit(1);
+			}
 		}
 	}
 	std::cout << "\033[32mContact data added successfully!\033[0m" << std::endl;
 	return (true);
 }
+
 
 /**
  * @brief Get the Contact object
@@ -94,4 +100,17 @@ void	Contact::GetContact(int index) const
 			std::cout << std::setw(10) << this->_data[i];
 	}
 	std::cout << "|" << std::endl;
-}	
+}
+
+/**
+ * @brief Check if the contact is empty
+ * 
+ * @return true if the contact is empty
+ */
+
+bool	Contact::IsEmpty() const
+{
+	if (this->_data[FirstName].length() == 0)
+		return (true);
+	return (false);
+}

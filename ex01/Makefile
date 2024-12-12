@@ -6,7 +6,7 @@
 #    By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 17:29:38 by mpietrza          #+#    #+#              #
-#    Updated: 2024/12/04 17:59:54 by mpietrza         ###   ########.fr        #
+#    Updated: 2024/12/12 14:29:48 by mpietrza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,13 @@ C = "\033[36m"
 W = "\033[37m"
 
 #SOURCES
-SRC		= Contact.cpp /
-		  Phonebook.cpp
+SRC		= Contact.cpp \
+		  PhoneBook.cpp \
+		  main.cpp
 
 SRCS	= $(addprefix $(DIR_SRCS), $(SRC))
 
-OBJS	= $(addprefix $(DIR_OBJS), $(SRC:.c=.o))
+OBJS	= $(addprefix $(DIR_OBJS), $(SRC:.cpp=.o))
 
 DEPS	= $(OBJS:.o=.d)
 
@@ -46,7 +47,7 @@ all:	$(DIR_OBJS) $(NAME)
 
 -include $(DEPS)
 
-$(DIR_OBJS)%.o : $(DIR_SRCS)%.c
+$(DIR_OBJS)%.o : $(DIR_SRCS)%.cpp
 	@echo $(B)Compiling [$<]... $(DEF_COLOR)
 	@printf $(Y) 
 	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $< 
