@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:54:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/13 17:21:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:25:04 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Account.hpp"
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 
 int	Account::_nbAccounts = 0;
@@ -41,7 +42,7 @@ Account::Account(int initialDeposit) : _accountIndex(_nbAccounts++),
  * @param void
  * @return void
  */
-~Account::Account()
+Account::~Account()
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount
@@ -109,7 +110,7 @@ void	Account::makeDeposit(int deposit)
  * 
  * @return void
  */
- void	Account::displayAccountInfos()
+ void	Account::displayAccountsInfos()
  {
 	 _displayTimestamp();
 	 std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount
