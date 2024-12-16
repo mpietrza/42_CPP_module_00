@@ -6,7 +6,7 @@
 #    By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 17:29:38 by mpietrza          #+#    #+#              #
-#    Updated: 2024/12/13 13:53:30 by mpietrza         ###   ########.fr        #
+#    Updated: 2024/12/16 16:46:59 by mpietrza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,7 @@ STD = -std=c++98
 RM = rm -rf
 
 #DIRECTIORIES
-DIR_SRCS = ./srcs/
 DIR_OBJS = ./objs/
-DIR_INCL = ./inc/
 
 #COLORS
 DEF_COLOR = "\033[39m"
@@ -33,20 +31,16 @@ C = "\033[36m"
 W = "\033[37m"
 
 #SOURCES
-SRC		= Account.cpp \
+SRCS		= Account.cpp \
 		  tests.cpp
-
-SRCS	= $(addprefix $(DIR_SRCS), $(SRC))
-
-OBJS	= $(addprefix $(DIR_OBJS), $(SRC:.cpp=.o))
-
+OBJS = $(addprefix $(DIR_OBJS), $(SRCS:.cpp=.o))
 DEPS	= $(OBJS:.o=.d)
 
 all:	$(DIR_OBJS) $(NAME)
 
 -include $(DEPS)
 
-$(DIR_OBJS)%.o : $(DIR_SRCS)%.cpp
+$(DIR_OBJS)%.o : %.cpp
 	@echo $(B)Compiling [$<]... $(DEF_COLOR)
 	@printf $(Y) 
 	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $< 

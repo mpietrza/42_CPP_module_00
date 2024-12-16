@@ -6,13 +6,13 @@
 #    By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 17:29:38 by mpietrza          #+#    #+#              #
-#    Updated: 2024/12/12 14:29:48 by mpietrza         ###   ########.fr        #
+#    Updated: 2024/12/16 15:44:37 by mpietrza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -O0
 STD = -std=c++98
 RM = rm -rf
 

@@ -1,7 +1,7 @@
 NAME = megaphone
 SRC = megaphone.cpp
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -O0
 STD = -std=c++98
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:17:18 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/12 16:50:44 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:24:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void PhoneBook::SetData(void)
 	else
 	{
 		std::cout << "\033[31mThe phonebook is full!" << std::endl;
-		std::cout << "For deletion of the 1st existing contact";
-		std::cout << " and adding the new one as the last press 'y'." << std::endl;
+		std::cout << "For deletion of the 1st existing contact"
+				  << " and adding the new one as the last press 'y'." << std::endl;
 		std::cout << "For going back to the main menu press 'n'.\033[0m" << std::endl;
 		std::getline(std::cin, input);
 		if (std::cin.eof() == true)
@@ -53,11 +53,10 @@ void PhoneBook::SetData(void)
 		}
 		else if (input.compare("y") == 0)
 		{
-			for (int i = 1; i < 8; i++)
+			for (int i = 1; i < 7; i++)
 				this->_contacts[i - 1] = this->_contacts[i];
 			std::cout << "Contact number " << this->_index + 1 << std::endl;
 			this->_contacts[this->_index].SetContact();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters in the input buffer
 		}
 		else if (input.compare("n") == 0)
 			std::cout << "Going back to the main menu" << std::endl;
@@ -73,18 +72,18 @@ void	PhoneBook::GetData() const
 		std::cout << "\033[31mThe phone book is empty\033[0m" << std::endl;
 	else
 	{
-		char	input[2];
+		std::string	input;
 		while (42)
 		{
-			std::cout << "Press a button from '1' to '8' to show the contact assigned to that number";
-			std::cout << " or 'n' to go back to the main menu" << std::endl;
-			std::cin >> input;
+			std::cout << "Press a button from '1' to '8' to show the contact assigned to that number"
+					  << " or 'n' to go back to the main menu" << std::endl;
+			std::getline(std::cin, input);
 			if (std::cin.eof() == true)
 			{
 				std::cout << "\033[1;34mCtrl - D pressed - exiting the phone book.\033[0m" << std::endl;
 				std::exit(0);
 			}
-			else if (input[0] == 'n')
+			else if (input.compare("n") == 0)
 			{
 				std::cout << "\033[1;33mGoing back to the main menu\033[0m" << std::endl;
 				break;
@@ -102,7 +101,7 @@ void	PhoneBook::GetData() const
 				std::cout << "|----------|----------|----------|----------|" << std::endl;
 			}
 		}
-
+		input.clear();
 	}
 }
 
