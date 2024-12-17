@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:17:18 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/16 16:24:21 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:58:05 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void PhoneBook::SetData(void)
 	{
 		std::cout << "\033[31mThe phonebook is full!" << std::endl;
 		std::cout << "For deletion of the 1st existing contact"
-				  << " and adding the new one as the last press 'y'." << std::endl;
+				  << " and adding the new one as the first press 'y'." << std::endl;
 		std::cout << "For going back to the main menu press 'n'.\033[0m" << std::endl;
 		std::getline(std::cin, input);
 		if (std::cin.eof() == true)
@@ -53,10 +53,8 @@ void PhoneBook::SetData(void)
 		}
 		else if (input.compare("y") == 0)
 		{
-			for (int i = 1; i < 7; i++)
-				this->_contacts[i - 1] = this->_contacts[i];
-			std::cout << "Contact number " << this->_index + 1 << std::endl;
-			this->_contacts[this->_index].SetContact();
+			std::cout << "Contact number 1" << std::endl;
+			this->_contacts[0].SetContact();
 		}
 		else if (input.compare("n") == 0)
 			std::cout << "Going back to the main menu" << std::endl;
@@ -66,15 +64,26 @@ void PhoneBook::SetData(void)
 	}
 }
 
-void	PhoneBook::GetData() const
+void PhoneBook::GetData() const
 {
 	if (this->_index == 0)
+	{
 		std::cout << "\033[31mThe phone book is empty\033[0m" << std::endl;
+	}
 	else
 	{
-		std::string	input;
-		while (42)
+		std::string input;
+		while (true)
 		{
+			std::cout << "|-------------------------------------------|" << std::endl;
+			std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+			std::cout << "|----------|----------|----------|----------|" << std::endl;
+			if (this->_contacts[0].IsEmpty() == false)
+			{
+				for (int i = 0; i <= this->_index; i++)
+					this->_contacts[i].GetContact(i + 1, true);
+			}
+			std::cout << "|----------|----------|----------|----------|" << std::endl;
 			std::cout << "Press a button from '1' to '8' to show the contact assigned to that number"
 					  << " or 'n' to go back to the main menu" << std::endl;
 			std::getline(std::cin, input);
@@ -94,11 +103,8 @@ void	PhoneBook::GetData() const
 				std::cout << "\033[31mError: contact is empty!\033[0m" << std::endl;
 			else
 			{
-				std::cout << "|-------------------------------------------|" << std::endl;
-				std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-				std::cout << "|----------|----------|----------|----------|" << std::endl;
-				this->_contacts[input[0] - 48 - 1].GetContact(input[0] - 48);
-				std::cout << "|----------|----------|----------|----------|" << std::endl;
+				this->_contacts[input[0] - 48 - 1].GetContact(input[0] - 48, false);
+				break;
 			}
 		}
 		input.clear();

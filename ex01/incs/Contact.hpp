@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:04:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/12 14:45:08 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:02:57 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class Contact
 		~Contact(void);
 
 		bool	SetContact();
-		void	GetContact(int index) const;
+		void	GetContact(int index, bool isTable) const;
 		bool	IsEmpty() const;
 };
 

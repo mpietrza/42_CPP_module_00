@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:01:50 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/16 16:48:37 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:10:42 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,27 @@ bool	Contact::SetContact()
  * 
  * @param index index of the contact
  */
-void	Contact::GetContact(int index) const
+void	Contact::GetContact(int index, bool isTable) const
 {
-	std::cout << "|" << std::setw(10) << index;
-	for (int i = FirstName; i <= Nickname; i++)
+	if (isTable == true)
 	{
-		std::cout << "|";
-		if (this->_data[i].length() > 10)
-			std::cout << this->_data[i].substr(0, 9) << ".";
-		else
-			std::cout << std::setw(10) << this->_data[i];
+		std::cout << "|" << std::setw(10) << index;
+		for (int i = FirstName; i <= Nickname; i++)
+		{
+			std::cout << "|";
+			if (this->_data[i].length() > 10)
+				std::cout << this->_data[i].substr(0, 9) << ".";
+			else
+				std::cout << std::setw(10) << this->_data[i];
+		}
+		std::cout << "|" << std::endl;
 	}
-	std::cout << "|" << std::endl;
+	else
+	{
+		for (int i = FirstName; i <= DarkestSecret; i++)
+			std::cout << Contact::_NameOfField[i] << ": " << this->_data[i] << std::endl;
+	}
+
 }
 
 /**
