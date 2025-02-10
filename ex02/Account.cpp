@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:54:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/12/16 16:50:49 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:45:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	Account::makeDeposit(int deposit)
  */
  void	Account::_displayTimestamp()
  {
-	 std::time_t	t = std::time(nullptr);
+	 std::time_t t = std::time(0);
 	 std::tm		*now = std::localtime(&t);
 	 
 	 std::cout << "[" 
